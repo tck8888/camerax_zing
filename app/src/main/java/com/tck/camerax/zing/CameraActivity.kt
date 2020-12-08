@@ -28,7 +28,8 @@ import androidx.collection.arrayMapOf
 class CameraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCameraBinding
-    private lateinit var barcodeAnalyzer: BarcodeAnalyzer
+    private var barcodeAnalyzer: BarcodeAnalyzer? = null
+    private var imageAnalysis: ImageAnalysis? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +52,18 @@ class CameraActivity : AppCompatActivity() {
                 .build()
             val tempPreview = Preview.Builder()
                 .build()
-            val imageAnalysis = ImageAnalysis.Builder().build()
-            barcodeAnalyzer = BarcodeAnalyzer()
-            barcodeAnalyzer.setOnBarcodeAnalyzerListener {
-                barcodeAnalyzer.controlBarcodeAnalyzer(false)
+
+            val tempImageAnalysis = ImageAnalysis.Builder().build()
+            imageAnalysis = tempImageAnalysis
+            val tempBarcodeAnalyzer = BarcodeAnalyzer()
+            barcodeAnalyzer = tempBarcodeAnalyzer
+            tempBarcodeAnalyzer.setOnBarcodeAnalyzerListener {
+                tempBarcodeAnalyzer.controlBarcodeAnalyzer(false)
                 intent.putExtra("qr_code", it)
                 setResult(RESULT_OK, intent)
                 finish()
             }
-            imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), barcodeAnalyzer)
+            tempImageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(this), tempBarcodeAnalyzer)
 
             try {
                 cameraProvider.unbindAll()
@@ -67,7 +71,7 @@ class CameraActivity : AppCompatActivity() {
                     this,
                     cameraSelector,
                     tempPreview,
-                    imageAnalysis
+                    tempImageAnalysis
                 )
                 tempPreview.setSurfaceProvider(binding.previewView.surfaceProvider)
             } catch (e: Exception) {
@@ -76,6 +80,14 @@ class CameraActivity : AppCompatActivity() {
 
         }, ContextCompat.getMainExecutor(this))
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        imageAnalysis?.clearAnalyzer()
+        barcodeAnalyzer?.controlBarcodeAnalyzer(false)
+        barcodeAnalyzer?.setOnBarcodeAnalyzerListener(null)
+        barcodeAnalyzer = null
     }
 
     //一加

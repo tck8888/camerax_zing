@@ -69,13 +69,13 @@ class BarcodeAnalyzer : ImageAnalysis.Analyzer {
         val width = image.width
         val height = image.height
 
-//        planes.forEachIndexed { index, planeProxy ->
-//            YLogger.d("get data from: $index")
-//            YLogger.d("image.imageInfo.rotationDegrees: ${image.imageInfo.rotationDegrees}")
-//            YLogger.d("width: ${width},height: ${height}")
-//            YLogger.d("planeProxy.pixelStride: ${planeProxy.pixelStride},planeProxy.rowStride: ${planeProxy.rowStride},planeProxy.buffer.capacity(): ${planeProxy.buffer.capacity()}")
-//            YLogger.d("=====================================================================")
-//        }
+        planes.forEachIndexed { index, planeProxy ->
+            YLogger.d("get data from: $index")
+            YLogger.d("image.imageInfo.rotationDegrees: ${image.imageInfo.rotationDegrees}")
+            YLogger.d("width: ${width},height: ${height}")
+            YLogger.d("planeProxy.pixelStride: ${planeProxy.pixelStride},planeProxy.rowStride: ${planeProxy.rowStride},planeProxy.buffer.capacity(): ${planeProxy.buffer.capacity()}")
+            YLogger.d("=====================================================================")
+        }
         //width:800,height:600
         //planeProxy.pixelStride:2,planeProxy.rowStride:832,planeProxy.buffer.capacity():249567
         //y数据
