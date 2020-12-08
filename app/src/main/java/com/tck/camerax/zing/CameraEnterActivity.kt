@@ -86,4 +86,16 @@ class CameraEnterActivity : AppCompatActivity() {
         startActivityForResult(intent, 100)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            val qr_code = data?.getStringExtra("qr_code")
+            if (qr_code.isNullOrEmpty()) {
+                binding.tvQrCode.text = "识别失败"
+            } else {
+                binding.tvQrCode.text = qr_code
+            }
+        }
+    }
+
 }
