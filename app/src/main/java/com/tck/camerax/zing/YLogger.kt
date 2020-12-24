@@ -1,5 +1,6 @@
 package com.tck.camerax.zing
 
+import android.content.res.Resources
 import android.util.Log
 
 /**
@@ -21,3 +22,5 @@ object YLogger {
         Log.d(TAG, msg)
     }
 }
+
+fun Float.dp2pxFloat(): Float = (Resources.getSystem().displayMetrics.density * this + 0.5f)

@@ -45,10 +45,10 @@ class BarcodeAnalyzer : ImageAnalysis.Analyzer {
     }
 
     override fun analyze(image: ImageProxy) {
-        YLogger.d("get data from ${image.format}")
+      //  YLogger.d("get data from ${image.format}")
 
         if (!needBarcodeAnalyzer) {
-            YLogger.d("BarcodeAnalyzer needBarcodeAnalyzer state:$needBarcodeAnalyzer")
+          //  YLogger.d("BarcodeAnalyzer needBarcodeAnalyzer state:$needBarcodeAnalyzer")
             image.close()
             return
         }
@@ -61,7 +61,7 @@ class BarcodeAnalyzer : ImageAnalysis.Analyzer {
         val planes = image.planes
 
         if (planes.isEmpty()) {
-            YLogger.d("BarcodeAnalyzer ImageProxy.PlaneProxy[] length = 0")
+           // YLogger.d("BarcodeAnalyzer ImageProxy.PlaneProxy[] length = 0")
             image.close()
             return
         }
@@ -69,13 +69,13 @@ class BarcodeAnalyzer : ImageAnalysis.Analyzer {
         val width = image.width
         val height = image.height
 
-        planes.forEachIndexed { index, planeProxy ->
-            YLogger.d("get data from: $index")
-            YLogger.d("image.imageInfo.rotationDegrees: ${image.imageInfo.rotationDegrees}")
-            YLogger.d("width: ${width},height: ${height}")
-            YLogger.d("planeProxy.pixelStride: ${planeProxy.pixelStride},planeProxy.rowStride: ${planeProxy.rowStride},planeProxy.buffer.capacity(): ${planeProxy.buffer.capacity()}")
-            YLogger.d("=====================================================================")
-        }
+//        planes.forEachIndexed { index, planeProxy ->
+//            YLogger.d("get data from: $index")
+//            YLogger.d("image.imageInfo.rotationDegrees: ${image.imageInfo.rotationDegrees}")
+//            YLogger.d("width: ${width},height: ${height}")
+//            YLogger.d("planeProxy.pixelStride: ${planeProxy.pixelStride},planeProxy.rowStride: ${planeProxy.rowStride},planeProxy.buffer.capacity(): ${planeProxy.buffer.capacity()}")
+//            YLogger.d("=====================================================================")
+//        }
         //width:800,height:600
         //planeProxy.pixelStride:2,planeProxy.rowStride:832,planeProxy.buffer.capacity():249567
         //y数据
@@ -126,13 +126,13 @@ class BarcodeAnalyzer : ImageAnalysis.Analyzer {
                     onBarcodeAnalyzerListener?.invoke(qrCode)
                     YLogger.d("BarcodeAnalyzer,qrCode is $qrCode")
                 } else {
-                    YLogger.d("BarcodeAnalyzer,qrCode isEmpty")
+                    //YLogger.d("BarcodeAnalyzer,qrCode isEmpty")
                 }
             } else {
-                YLogger.d("BarcodeAnalyzer,result = null")
+              //  YLogger.d("BarcodeAnalyzer,result = null")
             }
         } catch (e: Exception) {
-            YLogger.d("ImageAnalysis.Analyzer error:${e.message}")
+          //  YLogger.d("ImageAnalysis.Analyzer error:${e.message}")
         }
 
         image.close()

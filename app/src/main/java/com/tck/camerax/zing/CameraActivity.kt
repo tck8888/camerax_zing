@@ -3,6 +3,8 @@ package com.tck.camerax.zing
 import android.annotation.SuppressLint
 import android.graphics.ImageFormat
 import android.os.Bundle
+import android.view.View
+import android.widget.FrameLayout
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
@@ -40,6 +42,12 @@ class CameraActivity : AppCompatActivity() {
         binding.previewView.post {
             initCamera()
         }
+
+        val layoutParams = binding.barcodeScanWidget.layoutParams as FrameLayout.LayoutParams
+        layoutParams.topMargin = resources.displayMetrics.heightPixels * 165 / 667
+        layoutParams.width = resources.displayMetrics.widthPixels * 256 / 375
+        layoutParams.height = resources.displayMetrics.widthPixels * 256 / 375
+        binding.barcodeScanWidget.layoutParams = layoutParams
     }
 
     @SuppressLint("RestrictedApi")
@@ -74,6 +82,13 @@ class CameraActivity : AppCompatActivity() {
                     tempImageAnalysis
                 )
                 tempPreview.setSurfaceProvider(binding.previewView.surfaceProvider)
+
+                binding.barcodeScanWidget.visibility= View.VISIBLE
+                binding.barcodeScanWidget.post{
+                    binding.barcodeScanWidget.startScan()
+                }
+
+
             } catch (e: Exception) {
                 YLogger.d("initCamera error:${e.message}")
             }

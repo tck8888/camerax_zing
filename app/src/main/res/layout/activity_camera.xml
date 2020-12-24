@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,4 +17,13 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="30dp"
         android:text="拍照" />
+
+    <com.tck.my.opengl.base.BarcodeScanWidget
+        android:id="@+id/barcode_scan_widget"
+        android:layout_width="256dp"
+        android:layout_height="256dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="invisible"
+        tools:layout_gravity="center"
+        tools:visibility="visible" />
 </FrameLayout>
