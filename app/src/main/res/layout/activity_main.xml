@@ -13,4 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="识别二维码" />
+
+    <com.tck.camerax.zing.SmallBellWidget
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
