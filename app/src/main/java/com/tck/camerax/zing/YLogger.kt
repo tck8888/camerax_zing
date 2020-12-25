@@ -24,3 +24,6 @@ object YLogger {
 }
 
 fun Float.dp2pxFloat(): Float = (Resources.getSystem().displayMetrics.density * this + 0.5f)
+
+
+fun Float.dp2px(): Int = (Resources.getSystem().displayMetrics.density * this + 0.5f).toInt()

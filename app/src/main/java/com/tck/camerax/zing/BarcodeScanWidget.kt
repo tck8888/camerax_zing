@@ -1,4 +1,4 @@
-package com.tck.my.opengl.base
+package com.healthmudi.dia.scan
 
 import android.animation.ValueAnimator
 import android.animation.ValueAnimator.RESTART
@@ -23,7 +23,7 @@ import com.tck.camerax.zing.dp2pxFloat
  *
  */
 class BarcodeScanWidget @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
 
@@ -76,7 +76,7 @@ class BarcodeScanWidget @JvmOverloads constructor(
         scanIconRect.top = scanDistance
         scanIconRect.right = width - borderWidth.toInt()
         scanIconRect.bottom =
-            scanDistance + ((scanIcon.height.toFloat() / scanIcon.width.toFloat()) * width).toInt()
+                scanDistance + ((scanIcon.height.toFloat() / scanIcon.width.toFloat()) * width).toInt()
 
         canvas?.drawBitmap(scanIcon, null, scanIconRect, iconPaint)
 
@@ -87,32 +87,32 @@ class BarcodeScanWidget @JvmOverloads constructor(
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             canvas?.clipOutRect(
-                cornerLength,
-                0f,
-                width - cornerLength,
-                height.toFloat()
+                    cornerLength,
+                    0f,
+                    width - cornerLength,
+                    height.toFloat()
             )
             canvas?.clipOutRect(
-                0f,
-                cornerLength,
-                width.toFloat(),
-                height.toFloat() - cornerLength
+                    0f,
+                    cornerLength,
+                    width.toFloat(),
+                    height.toFloat() - cornerLength
             )
 
         } else {
             canvas?.clipRect(
-                cornerLength,
-                0f,
-                width - cornerLength,
-                height.toFloat(),
-                Region.Op.DIFFERENCE
+                    cornerLength,
+                    0f,
+                    width - cornerLength,
+                    height.toFloat(),
+                    Region.Op.DIFFERENCE
             )
             canvas?.clipRect(
-                0f,
-                cornerLength,
-                width.toFloat(),
-                height.toFloat() - cornerLength,
-                Region.Op.DIFFERENCE
+                    0f,
+                    cornerLength,
+                    width.toFloat(),
+                    height.toFloat() - cornerLength,
+                    Region.Op.DIFFERENCE
             )
         }
 
@@ -120,31 +120,31 @@ class BarcodeScanWidget @JvmOverloads constructor(
         val center = cornerWidth / 2f
 
         canvas?.drawRoundRect(
-            center,
-            center,
-            width - center,
-            height - center,
-            radius,
-            radius,
-            paint
+                center,
+                center,
+                width - center,
+                height - center,
+                radius,
+                radius,
+                paint
         )
         canvas?.restore()
 
         canvas?.drawLine(cornerLength, center, width - cornerLength, center, paint2)
         canvas?.drawLine(
-            cornerLength,
-            height - center,
-            width - cornerLength,
-            height - center,
-            paint2
+                cornerLength,
+                height - center,
+                width - cornerLength,
+                height - center,
+                paint2
         )
         canvas?.drawLine(center, cornerLength, center, height - cornerLength, paint2)
         canvas?.drawLine(
-            width - center,
-            cornerLength,
-            width - center,
-            height - cornerLength,
-            paint2
+                width - center,
+                cornerLength,
+                width - center,
+                height - cornerLength,
+                paint2
         )
     }
 
